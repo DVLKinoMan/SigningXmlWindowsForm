@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28729.10
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SigningXml", "SigningXml\SigningXml.csproj", "{56CC2BFB-F30A-424D-8F30-CC7B1B8D381B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SigningXml.Domain", "SigningXml.Domain\SigningXml.Domain.csproj", "{5B1917EC-A931-4B18-92E9-5AEC81F6C976}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{56CC2BFB-F30A-424D-8F30-CC7B1B8D381B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56CC2BFB-F30A-424D-8F30-CC7B1B8D381B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56CC2BFB-F30A-424D-8F30-CC7B1B8D381B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56CC2BFB-F30A-424D-8F30-CC7B1B8D381B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B1917EC-A931-4B18-92E9-5AEC81F6C976}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B1917EC-A931-4B18-92E9-5AEC81F6C976}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B1917EC-A931-4B18-92E9-5AEC81F6C976}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B1917EC-A931-4B18-92E9-5AEC81F6C976}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C888CDD6-122C-4B4C-BA6B-A86CFAA37525}
+	EndGlobalSection
+EndGlobal
