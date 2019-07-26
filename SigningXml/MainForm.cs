@@ -29,8 +29,6 @@ namespace SigningXml
         {
             try
             {
-                var doc = new XmlDocument();
-                doc.LoadXml(textBox1.Text);
                 var tuple = NbeXmlDocumentSigner.SignBodyParameter(textBox1.Text, NbeXmlDocumentSigner.GetPrivateKeyFromPath(textBox3.Text, textBox4.Text));
 
                 textBox2.Text = tuple.signedEnvelope;
@@ -101,6 +99,52 @@ namespace SigningXml
             if (openFileDialog2.ShowDialog() == DialogResult.OK)
             {
                 textBox5.Text = openFileDialog2.FileName;
+            }
+        }
+
+        private void Button5_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var signed = NbeXmlDocumentSigner.SignBody(textBox1.Text, NbeXmlDocumentSigner.GetPrivateKeyFromPath(textBox3.Text, textBox4.Text));
+
+                textBox2.Text = signed;
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+        }
+
+        private void Button6_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var doc = new XmlDocument();
+                doc.LoadXml(textBox2.Text);
+
+                if (!checkBox1.Checked)
+                {
+                    if (NbeXmlDocumentSigner.ValidateSignature(doc,
+                        NbeXmlDocumentSigner.GetPublicKeyFromPath(textBox5.Text)))
+                        MessageBox.Show("CheckedSignature Successful");
+                    else
+                        MessageBox.Show("CheckedSignature not Successful");
+                }
+                else
+                {
+                    if (NbeXmlDocumentSigner.ValidateSignature(doc,
+                        NbeXmlDocumentSigner.GetPrivateKeyFromPath(textBox3.Text, textBox4.Text))
+                    ) //()))//.GetPrivateKeyFromPath(@"C:\Users\d.dvali\Desktop\Aa123456 tsttbcnbe.tbcbank.ge.pfx", "1")))//(@"C:\Users\d.dvali\Desktop\certnew.p7b")))
+                        MessageBox.Show("CheckedSignature Successful");
+                    else
+                        MessageBox.Show("CheckedSignature not Successful");
+                }
+            }
+
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
             }
         }
     }

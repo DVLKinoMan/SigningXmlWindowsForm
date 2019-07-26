@@ -42,11 +42,13 @@
             this.button4 = new System.Windows.Forms.Button();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(178, 58);
+            this.textBox1.Location = new System.Drawing.Point(178, 92);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(639, 260);
@@ -55,7 +57,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 61);
+            this.label1.Location = new System.Drawing.Point(12, 95);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(143, 13);
             this.label1.TabIndex = 1;
@@ -64,7 +66,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 347);
+            this.label2.Location = new System.Drawing.Point(12, 381);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(149, 13);
             this.label2.TabIndex = 3;
@@ -72,10 +74,10 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(178, 344);
+            this.textBox2.Location = new System.Drawing.Point(178, 378);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(639, 260);
+            this.textBox2.Size = new System.Drawing.Size(639, 325);
             this.textBox2.TabIndex = 2;
             // 
             // button1
@@ -84,7 +86,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(196, 23);
             this.button1.TabIndex = 4;
-            this.button1.Text = "ხელმოწერის დაგენერირება";
+            this.button1.Text = "ხელმოწერა Xml პარამეტრზე";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
@@ -119,24 +121,24 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(12, 562);
+            this.button3.Location = new System.Drawing.Point(12, 593);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(160, 42);
+            this.button3.Size = new System.Drawing.Size(160, 54);
             this.button3.TabIndex = 8;
-            this.button3.Text = "ხელმოწერის დადასტურება";
+            this.button3.Text = "ხელმოწერის დადასტურება Xml პარამეტრზე";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.Button3_Click);
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(12, 495);
+            this.textBox5.Location = new System.Drawing.Point(12, 529);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(152, 20);
             this.textBox5.TabIndex = 10;
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(12, 521);
+            this.button4.Location = new System.Drawing.Point(12, 555);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(154, 23);
             this.button4.TabIndex = 9;
@@ -151,18 +153,40 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(12, 454);
+            this.checkBox1.Location = new System.Drawing.Point(12, 488);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(138, 17);
             this.checkBox1.TabIndex = 11;
             this.checkBox1.Text = "check With Private Key";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(621, 47);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(196, 23);
+            this.button5.TabIndex = 12;
+            this.button5.Text = "ხელმოწერა Body-ზე";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.Button5_Click);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(12, 661);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(160, 42);
+            this.button6.TabIndex = 13;
+            this.button6.Text = "ხელმოწერის დადასტურება Body-ზე";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.Button6_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(863, 620);
+            this.ClientSize = new System.Drawing.Size(858, 715);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.button4);
@@ -198,5 +222,7 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.OpenFileDialog openFileDialog2;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
     }
 }

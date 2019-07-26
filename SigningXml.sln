@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.28729.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SigningXml", "SigningXml\SigningXml.csproj", "{56CC2BFB-F30A-424D-8F30-CC7B1B8D381B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SigningXml.Domain", "SigningXml.Domain\SigningXml.Domain.csproj", "{5B1917EC-A931-4B18-92E9-5AEC81F6C976}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SigningXml.Domain", "SigningXml.Domain\SigningXml.Domain.csproj", "{5B1917EC-A931-4B18-92E9-5AEC81F6C976}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

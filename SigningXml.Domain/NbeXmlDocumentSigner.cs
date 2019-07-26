@@ -16,52 +16,52 @@ namespace SigningXml
 {
     public class NbeXmlDocumentSigner
     {
-        public static byte[] SignBodyParameter(XmlDocument doc, RSA key)
-        {
-            var responseXml = doc.GetElementsByTagName("xml")[0];
+        //public static byte[] SignBodyParameter(XmlDocument doc, RSA key)
+        //{
+        //    var responseXml = doc.GetElementsByTagName("xml")[0];
 
-            var docForSign = new XmlDocument();
-            docForSign.LoadXml(responseXml.InnerText);
+        //    var docForSign = new XmlDocument();
+        //    docForSign.LoadXml(responseXml.InnerText);
 
-            if (docForSign.FirstChild.Name == "xml")
-                docForSign.RemoveChild(docForSign.FirstChild);
+        //    if (docForSign.FirstChild.Name == "xml")
+        //        docForSign.RemoveChild(docForSign.FirstChild);
 
-            var signedXml = new SignedXml
-            {
-                SigningKey = key
-            };
+        //    var signedXml = new SignedXml
+        //    {
+        //        SigningKey = key
+        //    };
 
-            var objectID = docForSign.FirstChild.Name;
-            var dataObject = new DataObject
-            {
-                Data = docForSign.ChildNodes,
-                Id = objectID
-            };
+        //    var objectID = docForSign.FirstChild.Name;
+        //    var dataObject = new DataObject
+        //    {
+        //        Data = docForSign.ChildNodes,
+        //        Id = objectID
+        //    };
 
-            signedXml.AddObject(dataObject);
+        //    signedXml.AddObject(dataObject);
 
-            signedXml.AddReference(new Reference($"#{objectID}"));
+        //    signedXml.AddReference(new Reference($"#{objectID}"));
 
-            signedXml.ComputeSignature();
+        //    signedXml.ComputeSignature();
 
-            //var realXml = signedXml.GetXml().OuterXml;
+        //    //var realXml = signedXml.GetXml().OuterXml;
 
-            //var el = new XElement("Root", realXml);
-            //responseXml.InnerXml = el.LastNode.ToString();
+        //    //var el = new XElement("Root", realXml);
+        //    //responseXml.InnerXml = el.LastNode.ToString();
 
-            //responseXml.InnerXml = System.Web.HttpUtility.HtmlEncode(signedXml.GetXml().OuterXml);
+        //    //responseXml.InnerXml = System.Web.HttpUtility.HtmlEncode(signedXml.GetXml().OuterXml);
 
-            var s = System.Security.SecurityElement.Escape(signedXml.GetXml().OuterXml);
+        //    var s = System.Security.SecurityElement.Escape(signedXml.GetXml().OuterXml);
 
             
-            responseXml.InnerText = System.Security.SecurityElement.Escape(signedXml.GetXml().OuterXml);
+        //    responseXml.InnerText = System.Security.SecurityElement.Escape(signedXml.GetXml().OuterXml);
 
-            //new XmlElement()
+        //    //new XmlElement()
 
-            //responseXml.InnerXml = signedXml.GetXml().OuterXml.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("&#34;", "&quot;").Replace("'", "&apos;");
+        //    //responseXml.InnerXml = signedXml.GetXml().OuterXml.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("&#34;", "&quot;").Replace("'", "&apos;");
 
-            return signedXml.SignatureValue;
-        }
+        //    return signedXml.SignatureValue;
+        //}
 
         public static (string signedEnvelope, byte[] signature) SignBodyParameter(string envelope, RSA key)
         {
@@ -99,6 +99,40 @@ namespace SigningXml
             k.Text = SecurityElement.Escape(signedXml.GetXml().OuterXml);
 
             return (securityElement.ToString(), signedXml.SignatureValue);
+        }
+
+        public static string SignBody(string envelope, RSA key)
+        {
+            var doc = new XmlDocument();
+            doc.LoadXml(envelope);
+
+            var ns = new XmlNamespaceManager(doc.NameTable);
+            ns.AddNamespace("soapenv", "http://schemas.xmlsoap.org/soap/envelope/");
+
+            if (!(doc.DocumentElement.SelectSingleNode(@"//soapenv:Body", ns) is XmlElement body))
+                throw new ApplicationException("No body tag found");
+            body.SetAttribute("id", "Body");
+            var signedXml = new SignedXml(doc)
+            {
+                SigningKey = key
+            };
+
+            signedXml.SignedInfo.CanonicalizationMethod = SignedXml.XmlDsigExcC14NTransformUrl;
+            var reference = new Reference
+            {
+                Uri = "#Body"
+            };
+
+            reference.AddTransform(new XmlDsigExcC14NTransform());
+            signedXml.AddReference(reference);
+            signedXml.ComputeSignature();
+
+            var signedElement = signedXml.GetXml();
+
+            if (doc.DocumentElement.SelectSingleNode("//soapenv:Header", ns) is XmlElement soapHeader)
+                soapHeader.AppendChild(signedElement);
+
+            return doc.OuterXml;
         }
 
         public static bool ValidateSignature(XmlDocument xmlDoc, RSA publicKey)
